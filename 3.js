@@ -8,3 +8,21 @@
 // 1¢, 1¢, 2¢
 // 1¢, 3¢
 // 2¢, 2¢
+
+const changePossibilies = (amt, denoms) => {
+  let coinArr = []
+	// initialize an array with as many items as the amount
+  for (let i = 1; i <= amt; i++) {
+      coinArr[i] = 0     
+  }
+  coinArr[0] = 1
+
+  denoms.forEach( coin => {
+    for (let j = coin; j <= amt; j++) {
+      let remainder = j - coin
+      coinArr[j] += coinArr[remainder]
+    }
+  })
+
+  return coinArr[amt]
+} 
